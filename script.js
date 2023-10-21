@@ -5,12 +5,18 @@ window.addEventListener("load", fetchNews("india"))
 
 async function fetchNews(query){
 
-    const res = await fetch(`${URL}${query}&apiKey=${API_key}`)
-    const data = await res.json()
-    const articles = data.articles
-    console.log(articles)
-    bindData(articles)
+
+    try {
+        const res = await fetch(`${URL}${query}&apiKey=${API_key}`)
+        const data = await res.json()
+        const articles = data.articles
+        console.log(articles)
+        bindData(articles)
+    } catch (error) {
+        console.log("error found", error)
+    }
 }
+
 
 function bindData(articles){
     const cardsContainer = document.getElementById("main-card-container")
